@@ -64,6 +64,12 @@ export default function ContactPage() {
     setStatus("submitting");
     setErrorMessage("");
 
+    if (!supabase) {
+      setStatus("error");
+      setErrorMessage("Form submission is temporarily unavailable. Please email us instead.");
+      return;
+    }
+
     // Uses the existing contact_messages table — enquiry type and company
     // are folded into the subject/message so no schema change is needed.
     const { error } = await supabase.from("contact_messages").insert({

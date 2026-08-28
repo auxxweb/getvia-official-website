@@ -66,6 +66,12 @@ export default function ListBusinessPage() {
     setStatus("submitting");
     setErrorMessage("");
 
+    if (!supabase) {
+      setStatus("error");
+      setErrorMessage("Submission is temporarily unavailable. Please try again later.");
+      return;
+    }
+
     const { error } = await supabase.from("business_enquiries").insert({
       business_name: form.business_name.trim(),
       owner_name: form.owner_name.trim(),

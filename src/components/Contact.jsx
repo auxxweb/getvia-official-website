@@ -110,6 +110,12 @@ export default function Contact() {
     setStatus("submitting");
     setErrorMessage("");
 
+    if (!supabase) {
+      setStatus("error");
+      setErrorMessage("Form submission is temporarily unavailable. Please email us instead.");
+      return;
+    }
+
     const { error } = await supabase
       .from("contact_messages")
       .insert({

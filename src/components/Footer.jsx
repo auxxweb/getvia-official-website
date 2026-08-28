@@ -128,6 +128,12 @@ export default function Footer() {
     setStatus("submitting");
     setErrorMessage("");
 
+    if (!supabase) {
+      setStatus("error");
+      setErrorMessage("Newsletter signup is temporarily unavailable.");
+      return;
+    }
+
     try {
       const { error } = await supabase
         .from("newsletter_subscribers")

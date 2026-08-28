@@ -180,6 +180,12 @@ export default function BookDemoModal({ isOpen, onClose }) {
     setStatus("submitting");
     setErrorMessage("");
 
+    if (!supabase) {
+      setStatus("error");
+      setErrorMessage("Booking is temporarily unavailable. Please try again later.");
+      return;
+    }
+
     const { error } = await supabase.from("demo_bookings").insert({
       full_name: form.full_name.trim(),
       business_email: form.business_email.trim(),
