@@ -1,0 +1,347 @@
+import { Suspense, lazy, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+
+import ScrollToTop from "./components/layout/ScrollToTop";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import BookDemoModal from "./pages/BookDemo";
+
+/* Main platform pages */
+
+const ListBusinessPage = lazy(() =>
+  import("./pages/ListBusinessPage")
+);
+
+const AboutPage = lazy(() =>
+  import("./pages/AboutPage")
+);
+
+const ContactPage = lazy(() =>
+  import("./pages/ContactPage")
+);
+
+const FAQPage = lazy(() =>
+  import("./pages/FAQPage")
+);
+
+const PlatformPage = lazy(() =>
+  import("./pages/PlatformPage")
+);
+
+const SolutionsPage = lazy(() =>
+  import("./pages/SolutionsPage")
+);
+
+const HowItWorksPage = lazy(() =>
+  import("./pages/HowItWorksPage")
+);
+
+const FeaturesPage = lazy(() =>
+  import("./pages/FeaturesPage")
+);
+
+const TechnologyPage = lazy(() =>
+  import("./pages/TechnologyPage")
+);
+
+const IndustriesPage = lazy(() =>
+  import("./pages/IndustriesPage")
+);
+
+/* Audience pages */
+
+const ForBusinessesPage = lazy(() =>
+  import("./pages/ForBusinessesPage")
+);
+
+const ForProfessionalsPage = lazy(() =>
+  import("./pages/ForProfessionalsPage")
+);
+
+const CustomersPage = lazy(() =>
+  import("./pages/CustomersPage")
+);
+
+const VerificationPage = lazy(() =>
+  import("./pages/VerificationPage")
+);
+
+/* Blog pages */
+
+const BlogPage = lazy(() =>
+  import("./pages/BlogPage")
+);
+
+const BlogArticlePage = lazy(() =>
+  import("./pages/BlogArticlePage")
+);
+
+/* Resources */
+
+const ResourcesPage = lazy(() =>
+  import("./pages/ResourcesPage")
+);
+
+const HelpCenterPage = lazy(() =>
+  import("./pages/HelpCenterPage")
+);
+
+const SupportPage = lazy(() =>
+  import("./pages/SupportPage")
+);
+
+/* Case studies */
+
+const CaseStudiesPage = lazy(() =>
+  import("./pages/CaseStudiesPage")
+);
+
+const CaseStudyPage = lazy(() =>
+  import("./pages/CaseStudyPage")
+);
+
+/* Company */
+
+const CareersPage = lazy(() =>
+  import("./pages/CareersPage")
+);
+
+const PartnersPage = lazy(() =>
+  import("./pages/PartnersPage")
+);
+
+const PressPage = lazy(() =>
+  import("./pages/PressPage")
+);
+
+/* Legal */
+
+const PrivacyPolicyPage = lazy(() =>
+  import("./pages/PrivacyPolicyPage")
+);
+
+const TermsOfServicePage = lazy(() =>
+  import("./pages/TermsOfServicePage")
+);
+
+const CookiePolicyPage = lazy(() =>
+  import("./pages/CookiePolicyPage")
+);
+
+const RefundPolicyPage = lazy(() =>
+  import("./pages/RefundPolicyPage")
+);
+
+/* 404 */
+
+const NotFoundPage = lazy(() =>
+  import("./pages/NotFoundPage")
+);
+
+function RouteFallback() {
+  return (
+    <div className="flex min-h-[60vh] items-center justify-center bg-white">
+      <div
+        className="h-8 w-8 animate-spin rounded-full border-2 border-[#DDE5DE] border-t-[#007A1F]"
+        role="status"
+        aria-label="Loading page"
+      />
+    </div>
+  );
+}
+
+export default function App() {
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
+
+  const openDemoModal = () => {
+    setIsDemoOpen(true);
+  };
+
+  const closeDemoModal = () => {
+    setIsDemoOpen(false);
+  };
+
+  return (
+    <>
+      <ScrollToTop />
+
+      <Navbar onBookDemo={openDemoModal} />
+
+      <Suspense fallback={<RouteFallback />}>
+        <Routes>
+          {/* Home */}
+          <Route
+            path="/"
+            element={<Home onBookDemo={openDemoModal} />}
+          />
+
+          {/* Main platform pages */}
+          <Route
+            path="/platform"
+            element={<PlatformPage onBookDemo={openDemoModal} />}
+          />
+
+          <Route
+            path="/solutions"
+            element={
+              <SolutionsPage onBookDemo={openDemoModal} />
+            }
+          />
+
+          <Route
+            path="/how-it-works"
+            element={<HowItWorksPage />}
+          />
+
+          <Route
+            path="/features"
+            element={<FeaturesPage />}
+          />
+
+          <Route
+            path="/technology"
+            element={<TechnologyPage />}
+          />
+
+          <Route
+            path="/industries"
+            element={<IndustriesPage />}
+          />
+
+          {/* Audience pages */}
+          <Route
+            path="/for-businesses"
+            element={
+              <ForBusinessesPage onBookDemo={openDemoModal} />
+            }
+          />
+
+          <Route
+            path="/for-professionals"
+            element={<ForProfessionalsPage />}
+          />
+
+          <Route
+            path="/customers"
+            element={<CustomersPage />}
+          />
+
+          <Route
+            path="/verification"
+            element={<VerificationPage />}
+          />
+
+          {/* Company pages */}
+          <Route
+            path="/about"
+            element={<AboutPage />}
+          />
+
+          <Route
+            path="/careers"
+            element={<CareersPage />}
+          />
+
+          <Route
+            path="/partners"
+            element={<PartnersPage />}
+          />
+
+          <Route
+            path="/press"
+            element={<PressPage />}
+          />
+
+          {/* Blog */}
+          <Route
+            path="/blog"
+            element={<BlogPage />}
+          />
+
+          <Route
+            path="/blog/:slug"
+            element={<BlogArticlePage />}
+          />
+
+          {/* Resources */}
+          <Route
+            path="/resources"
+            element={<ResourcesPage />}
+          />
+
+          <Route
+            path="/help-center"
+            element={<HelpCenterPage />}
+          />
+
+          <Route
+            path="/support"
+            element={<SupportPage />}
+          />
+
+          <Route
+            path="/faq"
+            element={<FAQPage />}
+          />
+
+          {/* Case studies */}
+          <Route
+            path="/case-studies"
+            element={<CaseStudiesPage />}
+          />
+
+          <Route
+            path="/case-studies/:slug"
+            element={<CaseStudyPage />}
+          />
+
+          {/* Contact and business listing */}
+          <Route
+            path="/contact"
+            element={<ContactPage />}
+          />
+
+          <Route
+            path="/list-your-business"
+            element={<ListBusinessPage />}
+          />
+
+          {/* Legal */}
+          <Route
+            path="/privacy-policy"
+            element={<PrivacyPolicyPage />}
+          />
+
+          <Route
+            path="/terms-of-service"
+            element={<TermsOfServicePage />}
+          />
+
+          <Route
+            path="/cookie-policy"
+            element={<CookiePolicyPage />}
+          />
+
+          <Route
+            path="/refund-policy"
+            element={<RefundPolicyPage />}
+          />
+
+          {/* 404 */}
+          <Route
+            path="*"
+            element={<NotFoundPage />}
+          />
+        </Routes>
+      </Suspense>
+
+      <Footer />
+
+      <BookDemoModal
+        isOpen={isDemoOpen}
+        onClose={closeDemoModal}
+      />
+    </>
+  );
+}
