@@ -37,6 +37,8 @@ jobs:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
           VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
+         - name: Copy Google verification file
+        run: cp public/google340cfa55c3906910.html dist/google340cfa55c3906910.html
 
       # GitHub Pages has no SPA rewrite — copy index.html to 404.html
       # so client-side routes resolve instead of showing GitHub's 404 page.
