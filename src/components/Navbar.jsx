@@ -6,26 +6,22 @@ import { AnimatePresence, motion } from "framer-motion";
 import logo from "../assets/logo.png";
 
 const LINKS = [
+const LINKS = [
+  {
+    type: "route",
+    href: "/",
+    label: "Home",
+  },
   {
     type: "route",
     href: "/platform",
     label: "Platform",
   },
-  {
-    type: "route",
-    href: "/solutions",
-    label: "Solutions",
-  },
-  {
-    type: "route",
-    href: "/about",
-    label: "About",
-  },
-  {
-    type: "route",
-    href: "/resources",
-    label: "Resources",
-  },
+];
+  type: "route",
+  href: "/platform",
+  label: "Platform",
+},
 ];
 
 const focusRing =
