@@ -2,10 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-
 import logo from "../assets/logo.png";
 
-const LINKS = [
 const LINKS = [
   {
     type: "route",
@@ -17,11 +15,21 @@ const LINKS = [
     href: "/platform",
     label: "Platform",
   },
-];
-  type: "route",
-  href: "/platform",
-  label: "Platform",
-},
+  {
+    type: "route",
+    href: "/solutions",
+    label: "Solutions",
+  },
+  {
+    type: "route",
+    href: "/about",
+    label: "About",
+  },
+  {
+    type: "route",
+    href: "/resources",
+    label: "Resources",
+  },
 ];
 
 const focusRing =
@@ -36,8 +44,7 @@ function NavLink({
   const location = useLocation();
 
   const isActive =
-    item.type === "route" &&
-    location.pathname === item.href;
+    item.type === "route" && location.pathname === item.href;
 
   if (item.type === "route") {
     return (
@@ -68,7 +75,6 @@ function NavLink({
 export default function Navbar({ onBookDemo }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-
   const location = useLocation();
 
   useEffect(() => {
@@ -83,10 +89,7 @@ export default function Navbar({ onBookDemo }) {
     handleScroll();
 
     return () => {
-      window.removeEventListener(
-        "scroll",
-        handleScroll
-      );
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -114,16 +117,10 @@ export default function Navbar({ onBookDemo }) {
       }
     };
 
-    window.addEventListener(
-      "keydown",
-      handleEscape
-    );
+    window.addEventListener("keydown", handleEscape);
 
     return () => {
-      window.removeEventListener(
-        "keydown",
-        handleEscape
-      );
+      window.removeEventListener("keydown", handleEscape);
     };
   }, []);
 
@@ -145,6 +142,7 @@ export default function Navbar({ onBookDemo }) {
       }`}
     >
       <div className="mx-auto flex min-h-[72px] max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
+
         {/* Logo */}
         <Link
           to="/"
@@ -221,16 +219,10 @@ export default function Navbar({ onBookDemo }) {
           }
           aria-expanded={open}
           aria-controls="mobile-navigation"
-          onClick={() =>
-            setOpen((current) => !current)
-          }
+          onClick={() => setOpen((current) => !current)}
           className={`flex h-10 w-10 items-center justify-center rounded-full border border-[#DDE5DE] bg-white text-[#141414] transition hover:border-[#007A1F] hover:text-[#007A1F] md:hidden ${focusRing}`}
         >
-          {open ? (
-            <X size={22} />
-          ) : (
-            <Menu size={22} />
-          )}
+          {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
